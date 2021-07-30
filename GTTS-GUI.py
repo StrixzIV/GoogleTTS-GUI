@@ -1,20 +1,23 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-from tkinter.font import BOLD
 from gtts import gTTS as tts
 import os
 
+#Window setups
 screen = Tk()
 
 screen.title('GoogleTTS GUI')
 screen.geometry('300x320')
 
+#a main speech synthesis function
 def generate():
-
+    
+    #set save as file directory
     dir = filedialog.askdirectory()
     os.chdir(dir)
-
+    
+    #Language code dict
     langDict = {'English':'en',
                 'Thai':'th',
                 'Japanese':'ja',
@@ -48,7 +51,8 @@ def generate():
                 'Spanish':'es',
                 'Swedish':'sv',
                 'Malay':'ms'}
-
+    
+    #Speech synthesis
     inpText = txt.get()
     filename = fname.get()
     inpLang = selLang.get()
@@ -56,6 +60,7 @@ def generate():
     to_spleech.save(filename + '.mp3')
 
 
+#Combobox values
 langCode = ('Arabic',
             'Bengali',
             'Bulgarian',
@@ -90,6 +95,7 @@ langCode = ('Arabic',
             'Vietnamese',
             'Welsh')
 
+#Widget
 txt = StringVar()
 fname = StringVar()
 selLang = StringVar()
