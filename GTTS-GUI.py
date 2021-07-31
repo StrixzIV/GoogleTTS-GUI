@@ -9,6 +9,7 @@ screen = Tk()
 
 screen.title('GoogleTTS GUI')
 screen.geometry('300x320')
+screen.resizable(width = False, height = False)
 
 #a main speech synthesis function
 def generate():
