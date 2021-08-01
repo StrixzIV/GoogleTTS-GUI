@@ -8,7 +8,7 @@ import os
 screen = Tk()
 
 screen.title('GoogleTTS GUI')
-screen.geometry('300x320')
+screen.geometry('300x340')
 screen.resizable(width = False, height = False)
 
 #a main speech synthesis function
@@ -57,7 +57,8 @@ def generate():
     inpText = txt.get()
     filename = fname.get()
     inpLang = selLang.get()
-    to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False)
+    isSlowed = setSlow.get()
+    to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
     to_spleech.save(filename + '.mp3')
 
 
@@ -100,8 +101,9 @@ langCode = ('Arabic',
 txt = StringVar()
 fname = StringVar()
 selLang = StringVar()
+setSlow = BooleanVar()
 
-label1 = Label(screen, text = 'GoogleTTS GUI(v1.0)', fg = 'black').pack(pady = 25)
+label1 = Label(screen, text = 'GoogleTTS GUI(v1.0)', fg = 'black').pack(pady = 20)
 
 label2 = Label(screen, text = 'Filename', fg = 'black').pack(pady = 5)
 fnameBox = Entry(screen, textvariable = fname, bg = 'white', fg = 'black').pack()
@@ -110,6 +112,10 @@ label3 = Label(screen, text = 'Your text goes here', fg = 'black').pack()
 txtBox = Entry(screen, textvariable = txt, bg = 'white', fg = 'black').pack(pady = 5)
 
 label4 = Label(screen, text = 'Language', fg = 'black').pack()
-langBox = ttk.Combobox(screen, foreground = 'black', textvariable = selLang , values = langCode).pack()
-btn = Button(text = 'Generate', fg = 'red', font = 20, command = generate).pack(pady = 25)
+langBox = ttk.Combobox(screen, foreground = 'black', textvariable = selLang , values = langCode).pack(pady = 5)
+
+CheckBtn1 = Checkbutton(screen, text = 'Slowmode', fg = 'black', variable = setSlow).pack(pady = 10)
+
+btn = Button(text = 'Generate', fg = 'red', font = 20, command = generate).pack(pady = 5)
+
 screen.mainloop()
