@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.messagebox import showerror
 from tkinter import filedialog
 from gtts import gTTS as tts
+from gtts.tts import gTTSError
 import os
 
 #Window setups
@@ -13,10 +15,6 @@ screen.resizable(width = False, height = False)
 
 #a main speech synthesis function
 def generate():
-    
-    #set save as file directory
-    dir = filedialog.askdirectory()
-    os.chdir(dir)
     
     #Language code dict
     langDict = {'English':'en',
@@ -53,13 +51,25 @@ def generate():
                 'Swedish':'sv',
                 'Malay':'ms'}
     
-    #Speech synthesis
-    inpText = txt.get()
-    filename = fname.get()
-    inpLang = selLang.get()
-    isSlowed = setSlow.get()
-    to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
-    to_spleech.save(filename + '.mp3')
+    try:
+        #set save as file directory
+        dir = filedialog.askdirectory()
+        os.chdir(dir)
+        
+        #Speech synthesis
+        inpText = txt.get()
+        filename = fname.get()
+        inpLang = selLang.get()
+        isSlowed = setSlow.get()
+        to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
+        to_spleech.save(filename + '.mp3')
+
+    #Error handler
+    except gTTSError:
+        showerror('Error', 'Cannot generate audio file.')
+
+    except OSError:
+        showerror('Error', 'Directory not selected.')
 
 
 #Combobox values
