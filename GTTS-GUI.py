@@ -113,7 +113,7 @@ fname = StringVar()
 selLang = StringVar()
 setSlow = BooleanVar()
 
-label1 = Label(screen, text = 'GoogleTTS GUI(v1.1)', fg = 'black').pack(pady = 20)
+label1 = Label(screen, text = 'GoogleTTS GUI(v1.2)', fg = 'black').pack(pady = 20)
 
 label2 = Label(screen, text = 'Filename', fg = 'black').pack(pady = 5)
 fnameBox = Entry(screen, textvariable = fname, bg = 'white', fg = 'black').pack()
