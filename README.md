@@ -16,7 +16,7 @@ Use the package manager pip to install `gTTS`, `tkinter` libary for the project
 pip install gTTS
 pip install tk
 ```
-//For the person who use the app, you don't need to install the libary//
+For the person who use the app, you don't need to install the libary
 
 ## Usage
 
