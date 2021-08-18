@@ -4,7 +4,7 @@ A graphical interface version of `Google-Text-to-Spleech` repository using `tkin
 
 official gTTs repository : https://github.com/pndurette/gTTS
 
-Google-Text-to-Spleech repository : https://github.com/JirayuKaewsing/Google-Text-to-Spleech
+Google-Text-to-Spleech repository : https://github.com/StrixzIV/Google-Text-to-Spleech
 
 Documentation : https://cloud.google.com/text-to-speech/docs/apis
 
