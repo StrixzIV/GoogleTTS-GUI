@@ -19,7 +19,7 @@ pip install tk
 
 ## Usage
 
-  ##Terminal
+## Terminal
 Open the terminal/command prompt at the project folder and run the python file by command
 
 Windows
