@@ -5,58 +5,28 @@ from tkinter import filedialog
 from gtts import gTTS as tts
 from gtts.tts import gTTSError
 import os
+import json
 
-#Window setups
+# Window setups
 screen = Tk()
 
 screen.title('GoogleTTS GUI')
 screen.geometry('300x340')
 screen.resizable(width = False, height = False)
 
-#a main speech synthesis function
+# get the language codes
+with open('language.json') as fs:
+    langDict = json.load(fs)
+
+# a main speech synthesis function
 def generate():
     
-    #Language code dict
-    langDict = {'English':'en',
-                'Thai':'th',
-                'Japanese':'ja',
-                'Korean':'ko',
-                'German':'de',
-                'Russian':'ru',
-                'Indonesia':'id',
-                'Polish':'pl',
-                'Chinese(Simplified)':'zh-CN',
-                'Chinese(Traditional)':'zh-TW',
-                'Vietnamese':'vi',
-                'Arabic':'ar',
-                'Bengali':'bn',
-                'Welsh':'cy',
-                'Ukrainian':'uk',
-                'Turkish':'tr',
-                'Bulgarian':'bg',
-                'Catalan':'ca',
-                'Dutch':'nl',
-                'Filipino':'fil',
-                'France':'fr',
-                'Finnish':'fi',
-                'Greek':'el',
-                'Hebrew':'iw',
-                'Hindi':'hi',
-                'Hungarian':'hu',
-                'Italian':'it',
-                'Portuguese(Portugal)':'pt-PT',
-                'Portuguese(Brazil)':'pt-BR',
-                'Romanian':'ro',
-                'Spanish':'es',
-                'Swedish':'sv',
-                'Malay':'ms'}
-    
     try:
-        #set save as file directory
+        # set save as file directory
         dir = filedialog.askdirectory()
         os.chdir(dir)
         
-        #Speech synthesis
+        # Speech synthesis
         inpText = txt.get()
         filename = fname.get()
         inpLang = selLang.get()
@@ -64,7 +34,7 @@ def generate():
         to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
         to_spleech.save(filename + '.mp3')
 
-    #Error handler
+    # Error handler
     except gTTSError:
         showerror('Error', 'Cannot generate audio file.')
 
@@ -72,42 +42,10 @@ def generate():
         showerror('Error', 'Directory not selected.')
 
 
-#Combobox values
-langCode = ('Arabic',
-            'Bengali',
-            'Bulgarian',
-            'Catalan',
-            'Chinese(Simplified)',
-            'Chinese(Traditional)',
-            'Dutch',
-            'English',
-            'France',
-            'Finnish',
-            'Filipino',
-            'German',
-            'Greek',
-            'Hebrew',
-            'Hindi',
-            'Hungarian',
-            'Italian',
-            'Indonesia',
-            'Japanese',
-            'Korean',
-            'Malay',
-            'Polish',
-            'Portuguese(Portugal)',
-            'Portuguese(Brazil)',
-            'Romanian',
-            'Russian',
-            'Spanish',
-            'Swedish',
-            'Thai',
-            'Turkish',
-            'Ukrainian',
-            'Vietnamese',
-            'Welsh')
+# Combobox values
+langCode = sorted(langDict.keys())
 
-#Widget
+# Widget
 txt = StringVar()
 fname = StringVar()
 selLang = StringVar()
