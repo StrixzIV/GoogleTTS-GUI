@@ -1,6 +1,6 @@
 # GoogleTTS-GUI
 
-A graphical interface version of [Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech) repository using tkinter and [gTTS](https://github.com/pndurette/gTTS).
+A graphical interface version of **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)** repository using **[tkinter](https://tcl.tk/man/tcl8.6/TkCmd/contents.htm)** and **[gTTS](https://github.com/pndurette/gTTS)**.
 
 ## Install the libary
 
