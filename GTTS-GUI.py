@@ -19,7 +19,11 @@ with open('language.json') as fs:
     langDict = json.load(fs)
 
 # a main speech synthesis function
-def generate():
+def generate() -> None:
+    
+    '''
+        Send request to google text-to-spleech API and save output file to the target directory
+    '''
     
     try:
         # set save as file directory
