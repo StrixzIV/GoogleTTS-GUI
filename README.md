@@ -1,14 +1,15 @@
 # GoogleTTS-GUI
 
-A graphical interface version of **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)** repository using **[tkinter](https://tcl.tk/man/tcl8.6/TkCmd/contents.htm)** and **[gTTS](https://github.com/pndurette/gTTS)**.
+A graphical interface version of **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)** using **[tkinter](https://tcl.tk/man/tcl8.6/TkCmd/contents.htm)** and **[gTTS](https://github.com/pndurette/gTTS)**.
 
-## Install the libary
+## Dependentcies & Tools
 
-Use the package manager pip to install **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)**, **[tkinter](https://tcl.tk/man/tcl8.6/TkCmd/contents.htm)** for the project
+This project required python 3.6 or newer.
+
+To install all dependencies, run the following command:
 
 ```bash
-pip install gTTS
-pip install tk
+pip install --upgrade -r requirements.txt
 ```
 
 For the person who use the executable, you don't need to install the libary
