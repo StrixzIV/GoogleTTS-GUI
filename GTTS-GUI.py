@@ -1,20 +1,18 @@
-from tkinter import *
-from tkinter import ttk
-from tkinter.messagebox import showerror
-from tkinter import filedialog
-from gtts import gTTS as tts
-from gtts.tts import gTTSError
 import os
+import gtts
 import json
 
-screen = Tk()
+import customtkinter as ctk
+from tkinter.messagebox import showerror
 
-screen.title('GoogleTTS GUI')
-screen.geometry('300x340')
-screen.resizable(width = False, height = False)
+app = ctk.CTk()
 
-with open('language.json') as fs:
-    langDict = json.load(fs)
+app.title('GoogleTTS GUI')
+app.geometry('300x400')
+app.resizable(width = False, height = False)
+
+with open('language.json') as file:
+    languages_list = json.load(file)
 
 def generate() -> None:
     
@@ -24,43 +22,43 @@ def generate() -> None:
     
     try:
         
-        dir = filedialog.askdirectory()
-        os.chdir(dir)
+        dir = ctk.filedialog.askdirectory()
 
-        inpText = txt.get()
-        filename = fname.get()
-        inpLang = selLang.get()
-        isSlowed = setSlow.get()
-        to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
-        to_spleech.save(filename + '.mp3')
+        if not dir:
+            return
 
-    except gTTSError:
-        showerror('Error', 'Cannot generate audio file.')
+        inpText = input_text.get()
+        filename = output_filename.get() if output_filename.get() else 'output'
+        language = selected_language.get()
+        slowmode = use_slowmode.get()
 
-    except OSError:
-        showerror('Error', 'Directory not selected.')
+        speech = gtts.gTTS(text = inpText, lang = languages_list[language], lang_check = False, slow = slowmode)
+        speech.save(os.path.join(dir, f'{filename}.mp3'))
+
+    except gtts.gTTSError:
+        showerror('Error', 'Google API Error: Cannot generate audio file.')
 
 
-langCode = sorted(langDict.keys())
+languages = sorted(languages_list.keys())
 
-txt = StringVar()
-fname = StringVar()
-selLang = StringVar()
-setSlow = BooleanVar()
+input_text = ctk.StringVar()
+output_filename = ctk.StringVar()
+selected_language = ctk.StringVar()
+use_slowmode = ctk.BooleanVar()
 
-label1 = Label(screen, text = 'GoogleTTS GUI(v1.2)', fg = 'black').pack(pady = 20)
+label1 = ctk.CTkLabel(app, text = 'GoogleTTS GUI (v1.2)').pack(pady = (20, 15))
 
-label2 = Label(screen, text = 'Filename', fg = 'black').pack(pady = 5)
-fnameBox = Entry(screen, textvariable = fname, bg = 'white', fg = 'black').pack()
+label2 = ctk.CTkLabel(app, text = 'Filename').pack(pady = 5)
+fnameBox = ctk.CTkEntry(app, textvariable = output_filename).pack(pady = 5)
 
-label3 = Label(screen, text = 'Your text goes here', fg = 'black').pack()
-txtBox = Entry(screen, textvariable = txt, bg = 'white', fg = 'black').pack(pady = 5)
+label3 = ctk.CTkLabel(app, text = 'Your text goes here').pack()
+txtBox = ctk.CTkEntry(app, textvariable = input_text).pack(pady = 5)
 
-label4 = Label(screen, text = 'Language', fg = 'black').pack()
-langBox = ttk.Combobox(screen, foreground = 'black', textvariable = selLang , values = langCode).pack(pady = 5)
+label4 = ctk.CTkLabel(app, text = 'Language').pack()
+langBox = ctk.CTkComboBox(app, variable = selected_language , values = languages).pack(pady = 5)
 
-CheckBtn1 = Checkbutton(screen, text = 'Slowmode', fg = 'black', variable = setSlow).pack(pady = 10)
+CheckBtn1 = ctk.CTkSwitch(app, text = 'Slowmode', variable = use_slowmode).pack(pady = 10)
 
-btn = Button(text = 'Generate', fg = 'red', font = 20, command = generate).pack(pady = 5)
+btn = ctk.CTkButton(app, text = 'Generate', command = generate).pack(pady = 20)
 
-screen.mainloop()
+app.mainloop()
