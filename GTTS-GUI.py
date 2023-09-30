@@ -11,7 +11,7 @@ app.title('GoogleTTS GUI')
 app.geometry('300x400')
 app.resizable(width = False, height = False)
 
-with open('language.json') as file:
+with open('./config/language.json') as file:
     languages_list = json.load(file)
 
 def generate() -> None:
