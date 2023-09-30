@@ -7,18 +7,15 @@ from gtts.tts import gTTSError
 import os
 import json
 
-# Window setups
 screen = Tk()
 
 screen.title('GoogleTTS GUI')
 screen.geometry('300x340')
 screen.resizable(width = False, height = False)
 
-# get the language codes
 with open('language.json') as fs:
     langDict = json.load(fs)
 
-# a main speech synthesis function
 def generate() -> None:
     
     '''
@@ -26,11 +23,10 @@ def generate() -> None:
     '''
     
     try:
-        # set save as file directory
+        
         dir = filedialog.askdirectory()
         os.chdir(dir)
-        
-        # Speech synthesis
+
         inpText = txt.get()
         filename = fname.get()
         inpLang = selLang.get()
@@ -38,7 +34,6 @@ def generate() -> None:
         to_spleech = tts(text = inpText, lang = langDict[inpLang], lang_check = False, slow = isSlowed)
         to_spleech.save(filename + '.mp3')
 
-    # Error handler
     except gTTSError:
         showerror('Error', 'Cannot generate audio file.')
 
@@ -46,10 +41,8 @@ def generate() -> None:
         showerror('Error', 'Directory not selected.')
 
 
-# Combobox values
 langCode = sorted(langDict.keys())
 
-# Widget
 txt = StringVar()
 fname = StringVar()
 selLang = StringVar()
