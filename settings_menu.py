@@ -15,6 +15,7 @@ class SettingsMenu(ctk.CTkToplevel):
 
         ctk.set_appearance_mode(self.settings['theme'])
 
+        self.label1 = ctk.CTkLabel(self, text = 'Color Theme').pack(pady = (10, 2))
         self.combobox1 = ctk.CTkComboBox(
             self,
             values = ['system', 'dark', 'light'], 
