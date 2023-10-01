@@ -1,32 +1,33 @@
 # GoogleTTS-GUI
 
-A graphical interface version of **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)**.
+GoogleTTS-GUI is a graphical user interface (GUI) version of **[Google-Text-to-Spleech](https://github.com/StrixzIV/Google-Text-to-Spleech)**, built using **[CustomTkinter](https://github.com/tomschimansky/customtkinter)**.
 
-## Prerequisites & Tools
+## Prerequisites
 
-This project required python 3.6 or newer to function properly.
+Before you begin, ensure that you have the following prerequisites installed on your system:
 
-To install all dependencies, run the following command:
+* Python 3.9 or higher installed on your system.
 
-```bash
-pip install --upgrade -r requirements.txt
+## Installation
+
+1. Download the source code from the repository or clone it using the following command:
+
+```sh
+git clone https://github.com/StrixzIV/GoogleTTS-GUI.git
 ```
 
-Note: If you're using the executable app, you don't need to install the libraries.
+2. Change your working directory to the downloaded folder
 
-## Executable app
-
-You can download the executable files by clicking the links below:
-
-- **[Windows](https://github.com/StrixzIV/GoogleTTS-GUI/releases/download/1.2/GTTS-GUI-Windows.zip)**
-
-- **[Mac(Universal binary)](https://github.com/StrixzIV/GoogleTTS-GUI/releases/download/1.2/GTTS-GUI-Mac-Universal-Binary.zip)**
-
-## Python scripts
-
-To execute the application from Python script, run the following commands:
-
-```bash
+```sh
 cd /path/to/GoogleTTS-GUI
-python GTTS-GUI.py
 ```
+
+3. Install the necessary dependencies by running:
+
+```sh
+pip install -r requirements.txt
+```
+
+## License
+
+* **[MIT License](https://github.com/StrixzIV/GoogleTTS-GUI/blob/main/LICENSE)**
